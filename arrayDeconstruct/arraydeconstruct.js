@@ -4,6 +4,21 @@
 const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: "Classico Italiano",
@@ -11,6 +26,10 @@ const restaurant = {
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
+
+  //es6 object literal
+
+  openingHours,
   order: function (startIndex, mainIndex) {
     return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
   },
@@ -28,21 +47,6 @@ const restaurant = {
     console.log(mainIng);
     console.log(othering);
   },
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
 };
 
 restaurant.orderDelivery({
@@ -54,26 +58,26 @@ restaurant.orderDelivery({
 
 ///////////////////////////////////////
 
+const workTime = {
+  mon: {
+    startingtime: 1,
+    closingtime: 4,
+  },
+  tue: {
+    startingtime: 1,
+    closingtime: 4,
+  },
+  wed: {
+    startingtime: 1,
+    closingtime: 4,
+  },
+};
 const chinmay = {
   firstName: "chinmay",
   location1: "aurangabad",
   job: "software engg",
   genger: "Male",
-
-  workTime: {
-    mon: {
-      startingtime: 1,
-      closingtime: 4,
-    },
-    tue: {
-      startingtime: 1,
-      closingtime: 4,
-    },
-    wed: {
-      startingtime: 1,
-      closingtime: 4,
-    },
-  },
+  workTime,
 };
 /*
 const { firstName, location1, job, gender } = chinmay;
@@ -154,7 +158,7 @@ const str1 = [...str, "g"];
 console.log(str1);
 
 ////////////////////////////////////////////////////
-
+/*
 const ingridients = [
   prompt("give ing1 for pasta"),
   prompt("giveing 2"),
@@ -162,6 +166,7 @@ const ingridients = [
 ];
 
 restaurant.orderPasta(...ingridients);
+*/
 
 const newRestaurent = { ...restaurant, founder: "chinmay" };
 console.log(newRestaurent);
@@ -180,3 +185,29 @@ add(2, 4, 3);
 
 restaurant.orderPizza("olive", "spinach", "onion");
 restaurant.orderPizza("onion");
+
+/////////////////////////////////////////////////////
+
+const entireMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of entireMenu) console.log(item);
+for (const [i, e] of entireMenu.entries()) {
+  console.log(`${i + 1} : ${e}`);
+}
+
+console.log([...entireMenu.entries()]);
+
+////////////////////////////////////////////
+
+//optional chaining
+
+if (restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+//with chaining
+
+console.log(restaurant.openingHours?.mon?.open ?? "doses not open");
+console.log(chinmay.workTime?.mon?.open);
+
+const userArray = [{ name: "chinmay", email: "chinmay.jape2@gmail.com" }];
+console.log(userArray[0]?.name ?? "empty");
