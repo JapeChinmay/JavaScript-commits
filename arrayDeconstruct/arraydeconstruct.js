@@ -21,6 +21,14 @@ const restaurant = {
     `);
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, ${ing3}.`);
+  },
+  orderPizza: function (mainIng, ...othering) {
+    console.log(mainIng);
+    console.log(othering);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -67,7 +75,7 @@ const chinmay = {
     },
   },
 };
-
+/*
 const { firstName, location1, job, gender } = chinmay;
 console.log(firstName, location1, job, gender);
 
@@ -128,3 +136,47 @@ console.log(starter, main1);
 const nested = [2, 4, [5, 6]];
 const [i, , [j, t]] = nested;
 console.log(i, j, t);
+*/
+
+/////////////////////////////
+
+// spread operator
+
+const badarr = [1, 2, 3];
+const newarr = [3, 4, 2, ...badarr];
+console.log(...newarr);
+
+const newMenu = ["pasta", "sauce", ...restaurant.mainMenu];
+console.log(...newMenu);
+
+const str = "chinmay";
+const str1 = [...str, "g"];
+console.log(str1);
+
+////////////////////////////////////////////////////
+
+const ingridients = [
+  prompt("give ing1 for pasta"),
+  prompt("giveing 2"),
+  prompt(" give ing3"),
+];
+
+restaurant.orderPasta(...ingridients);
+
+const newRestaurent = { ...restaurant, founder: "chinmay" };
+console.log(newRestaurent);
+
+//////////// rest pattern
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum = sum + numbers[i];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(2, 4, 3);
+
+restaurant.orderPizza("olive", "spinach", "onion");
+restaurant.orderPizza("onion");
