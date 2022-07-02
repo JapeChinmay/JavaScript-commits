@@ -211,3 +211,80 @@ console.log(chinmay.workTime?.mon?.open);
 
 const userArray = [{ name: "chinmay", email: "chinmay.jape2@gmail.com" }];
 console.log(userArray[0]?.name ?? "empty");
+
+////////////set
+
+const orderSet = new Set(["chinmay", "jape", "chinmay"]);
+console.log(orderSet);
+console.log(new Set(["kkk"]));
+
+console.log(orderSet.size);
+console.log(orderSet.has("chinmay"));
+orderSet.add("jalna");
+orderSet.delete("jape");
+
+console.log(orderSet);
+
+for (const order of orderSet) console.log(order);
+
+////Example////
+
+const staff = ["waiter", "chef", "waiter", "manager", "chef"];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(staffUnique.length);
+console.log(new Set("chinmay"));
+
+///////////MAPS///////////
+
+const rest = new Map();
+
+rest.set("name", "spicyheaven");
+rest.set(1, "Italy");
+rest.set(2, " india");
+
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "we are closed");
+
+console.log(rest.get("categories"));
+console.log(rest.get("name"));
+console.log(rest.get(1));
+
+const time = prompt("enter time");
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+console.log(rest.has("house"));
+rest.delete(2);
+
+const arr = [1, 2];
+
+rest.set(arr, "Test");
+console.log(rest);
+console.log(rest.get(arr));
+rest.set(document.querySelector("h1"), "Heading");
+console.log(rest);
+
+const setOfQuestions = new Map();
+
+setOfQuestions
+  .set("question", "Which is the best lang in the world")
+  .set(1, "c")
+  .set(2, "java")
+  .set(3, "javascript")
+  .set(4, "python")
+  .set("correct", 3)
+  .set(true, "correct ans")
+  .set(false, "try again");
+
+console.log(setOfQuestions.get("question"));
+
+for (const [key, value] of setOfQuestions) {
+  if (typeof key === "number") console.log(`ans ${key}: ${value}`);
+}
+
+const answer = Number(prompt("ypur ans"));
+console.log(answer);
+console.log(setOfQuestions.get(setOfQuestions.get("correct") === answer));
