@@ -288,3 +288,18 @@ for (const [key, value] of setOfQuestions) {
 const answer = Number(prompt("ypur ans"));
 console.log(answer);
 console.log(setOfQuestions.get(setOfQuestions.get("correct") === answer));
+/// converted to arrays
+
+console.log(...setOfQuestions.entries());
+
+////////////////////////////////////////////////////////////////////////////
+
+const chinmayMap = new Map();
+
+chinmayMap
+  .set("name", "chinmay jape")
+  .set("home", "aurangabad")
+  .set("goal", "se")
+  .set("color", "brown");
+
+console.log(chinmayMap.get("name"));
