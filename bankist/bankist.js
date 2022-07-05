@@ -125,3 +125,16 @@ const createUserNames = function (accounts) {
 };
 
 /////////////////////////////////////////////////
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+console.log(movements);
+console.log(deposits);
+
+const withdrawls = movements.filter(function (mov) {
+  return mov < 0;
+});
+
+console.log(withdrawls);
