@@ -61,26 +61,6 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = function (movements) {
-  containerMovements.innerHTML = "";
-
-  movements.forEach(function (mov, i) {
-    const type = mov > 0 ? `deposit` : `withdrawl`;
-    const html = `
-           <div class="movements">
-        <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
-      i + 1
-    }${type}</div>
-          <div class="movements__value">${mov}</div>
-        </div>
-        `;
-    containerMovements.insertAdjacentHTML("afterbegin", html);
-  });
-};
-
-displayMovements(account1.movements);
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -93,48 +73,16 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1;
-
-const moveUSD = movements.map(function (mov) {
-  return mov * eurToUsd;
-});
-
-console.log(moveUSD);
-console.log(movements);
-
-const movementDescriptions = movements.map(function (mov, i, arr) {
-  if (mov > 0) {
-    return ` Movement ${i + 1} you desposited ${mov}`;
-  } else {
-    return `Movement ${i + 1} you withdrawl ${mov}`;
-  }
-});
-
-console.log(movementDescriptions);
-
-const createUserNames = function (accounts) {
-  accounts.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(" ")
-      .map(function (name) {
-        return name[0];
-      })
-      .join("");
-  });
-};
-
 /////////////////////////////////////////////////
 
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
+let arr = ["a", "v", " b", "g"];
+console.log(arr.slice(2));
+console.log(arr.slice(-2));
+console.log(arr.slice());
+console.log([...arr]);
 
-console.log(movements);
-console.log(deposits);
+console.log(arr.splice(1));
+console.log(arr.splice(-1));
+console.log(arr);
 
-const withdrawls = movements.filter(function (mov) {
-  return mov < 0;
-});
-
-console.log(withdrawls);
+//
