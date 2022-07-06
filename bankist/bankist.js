@@ -99,6 +99,7 @@ const createBalance = function (movements) {
   }, 0);
   labelBalance.textContent = `${balance}EUR`;
 };
+createBalance(account2.movements);
 
 const calcDisplaySummary = function (movements) {
   const incomes = movements
@@ -251,3 +252,13 @@ const totalDeposits = movements
   }, 0);
 
 console.log(totalDeposits);
+
+const firstWithdrawl = movements.find(function (mov) {
+  if (mov < 0) return mov;
+});
+console.log(firstWithdrawl);
+
+const findacc = accounts.find(function (singleaccount) {
+  if (singleaccount.owner === "Jessica Davis") return singleaccount;
+});
+console.log(findacc);
