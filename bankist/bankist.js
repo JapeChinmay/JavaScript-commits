@@ -75,6 +75,26 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+for (const mov of movements) {
+  if (mov > 0) {
+    console.log(`You deposited ${mov}`);
+  } else {
+    console.log(`You withdrew ${mov}`);
+  }
+}
+
+console.log("FOR EACH _____________");
+// for each
+
+movements.forEach(function (mov, i) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1} :You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}:You withdrew ${mov}`);
+  }
+});
+
+/*
 let arr = ["a", "v", " b", "g"];
 console.log(arr.slice(2));
 console.log(arr.slice(-2));
@@ -86,3 +106,12 @@ console.log(arr.splice(-1));
 console.log(arr);
 
 //
+const arr2 = [23, 11, 45];
+console.log(arr2.at(1));
+
+//
+console.log(arr2.slice(-1));
+
+*/
+
+/// forEach Method
