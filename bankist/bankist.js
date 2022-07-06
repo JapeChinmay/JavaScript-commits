@@ -91,6 +91,51 @@ const createUserNames = function (accounts) {
   });
 };
 
+createUserNames(accounts);
+
+const createBalance = function (movements) {
+  const balance = movements.reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+  labelBalance.textContent = `${balance}EUR`;
+};
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(function (mov) {
+      if (mov > 0) return mov;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    });
+  labelSumIn.textContent = `${incomes}EUR`;
+
+  const out = movements
+    .filter(function (mov) {
+      if (mov < 0) return mov;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  labelSumOut.textContent = `${Math.abs(out)}EUR`;
+
+  const intrest = movements
+    .filter(function (mov) {
+      if (mov > 0) return mov;
+    })
+    .map(function (deposit) {
+      return (deposit * 1.2) / 100;
+    })
+    .filter(function (int) {
+      return int >= 1;
+    })
+    .reduce(function (acc, int) {
+      return acc + int;
+    }, 0);
+  labelSumInterest.textContent = `${intrest}EUR`;
+};
+calcDisplaySummary(account2.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -175,3 +220,34 @@ const movementsDescription = movements.map(function (mov, i, arr) {
 console.log(movementsDescription);
 
 const user = "Steven Thomas Williams"; //stw
+
+const deposits = movements.filter(function (mov) {
+  if (mov > 0) console.log(`${mov}`);
+});
+
+const Withdrawlas = movements.filter(function (mov) {
+  if (mov < 0) console.log(`${mov}`);
+});
+
+const summation = movements.reduce(function (accu, curr, index, arr) {
+  console.log(accu + curr, `${index}, ${arr}`);
+  return accu + curr;
+}, 0);
+
+console.log(summation);
+////////////////
+
+///chaining
+
+const totalDeposits = movements
+  .filter(function (mov) {
+    if (mov > 0) return mov;
+  })
+  .map(function (mov) {
+    return mov * eurToUsd;
+  })
+  .reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+
+console.log(totalDeposits);
