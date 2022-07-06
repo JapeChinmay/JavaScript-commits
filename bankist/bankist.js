@@ -91,6 +91,40 @@ const createUserNames = function (accounts) {
   });
 };
 
+//event handler
+let currAccount;
+btnLogin.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  console.log("login");
+  currAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value
+  );
+  console.log(currAccount);
+
+  if (currAccount?.pin === Number(inputLoginPin.value)) {
+    //display UI msg
+    labelWelcome.textContent = `Welcome Back ${
+      currAccount.owner.split(" ")[0]
+    }`;
+    containerApp.style.opacity = 100;
+
+    //
+    inputLoginPin.value = "";
+    inputLoginUsername.value = "";
+    inputLoginPin.blur();
+
+    //display movements
+    displayMovements(currAccount.movements);
+
+    // display balance
+    createBalance(currAccount.movements);
+
+    //display summary
+    calcDisplaySummary(currAccount.movements);
+  }
+});
+
 createUserNames(accounts);
 
 const createBalance = function (movements) {
@@ -99,10 +133,9 @@ const createBalance = function (movements) {
   }, 0);
   labelBalance.textContent = `${balance}EUR`;
 };
-createBalance(account2.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(function (mov) {
       if (mov > 0) return mov;
     })
@@ -111,7 +144,7 @@ const calcDisplaySummary = function (movements) {
     });
   labelSumIn.textContent = `${incomes}EUR`;
 
-  const out = movements
+  const out = acc.movements
     .filter(function (mov) {
       if (mov < 0) return mov;
     })
@@ -120,12 +153,12 @@ const calcDisplaySummary = function (movements) {
     }, 0);
   labelSumOut.textContent = `${Math.abs(out)}EUR`;
 
-  const intrest = movements
+  const intrest = acc.movements
     .filter(function (mov) {
       if (mov > 0) return mov;
     })
     .map(function (deposit) {
-      return (deposit * 1.2) / 100;
+      return (deposit * acc.interestRate) / 100;
     })
     .filter(function (int) {
       return int >= 1;
@@ -135,7 +168,6 @@ const calcDisplaySummary = function (movements) {
     }, 0);
   labelSumInterest.textContent = `${intrest}EUR`;
 };
-calcDisplaySummary(account2.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
