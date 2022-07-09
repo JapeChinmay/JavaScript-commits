@@ -267,3 +267,23 @@ console.log(BigInt(93797293729372927392732973));
 //
 console.log(1000000n + 298293829328923n);
 console.log(39289232223n % 38232332312323n);
+
+const NewDATE = new Date();
+console.log(NewDATE);
+console.log(new Date("December 24 2022"));
+
+console.log(new Date(account1.movementsDates[1]));
+console.log(new Date(2022, 12, 12, 23, 12, 0));
+
+///
+const future = new Date(2022, 12, 12, 23, 12, 0);
+console.log(
+  future.getFullYear(),
+  future.getMonth(),
+  future.getDay(),
+  future.getHours()
+);
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(new Date(Date.now()).getFullYear());
