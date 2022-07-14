@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+
+class Addup{
+
+
+   private:
+       int age;
+       bool lic;
+
+
+   public :
+
+
+    Addup(int age, bool lic)
+    {
+        if(age >= 18 && lic == true)
+        {
+            
+        
+
+        this->lic = lic;
+        this->age = age;
+        
+        }
+
+    }
+    
+    void print()
+};
