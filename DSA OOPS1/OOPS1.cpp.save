@@ -52,7 +52,7 @@ public :
  void display()
  {
 
-     cout << age << " " <<rollNumber << " " << name <<endl;
+     cout << age << " " <<rollNumber << " " <<  endl;
 
  }
 
@@ -138,10 +138,7 @@ int main()
     s404 -> display();
 
 
-  char name[] = 'chinmay';
 
-  Student s45(12,34,name);
-  s45.display();
 
 
 
